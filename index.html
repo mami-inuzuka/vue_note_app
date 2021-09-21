@@ -7,14 +7,14 @@
   </head>
   <body>
     <div id="app">
-      <input ref="text">
+      <input ref="text"><button v-on:click="save">追加</button>
       <ul>
         <li v-for="item in todoLists">
           {{ item.text }}
           <button v-on:click="remove(item)">削除</button>
         </li>
       </ul>
-      <button v-on:click="save">追加</button>
+
     </div>
     <script src="index.js"></script>
   </body>
