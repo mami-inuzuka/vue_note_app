@@ -4,26 +4,36 @@
     <meta charset="UTF-8">
     <title>TODOリスト</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
     <div id="app">
-      <input ref="text"><button v-on:click="save">追加</button>
-      <ul>
-        <li v-for="(item, index) in todoLists">
-          <div v-if="item.isEditable">
-            <input v-bind:data="index" v-model="item.text">
-            <button v-on:click="update(item)">更新</button>
-            <button v-on:click="cancelEdit(item)">キャンセル</button>
-          </div>
-          <div v-else>
-            {{ item.text }}
-            <button v-on:click="edit(item)">編集</button>
-            <button v-on:click="remove(item)">削除</button>
-          </div>
-
-        </li>
-      </ul>
-
+      <div class="inner">
+        <div class="input_wrap">
+          <input class="main_input" ref="text" placeholder="何をしますか？">
+          <button class="button_large button_primary" v-on:click="save">追加</button>
+        </div>
+        <ul class="todo_lists">
+          <li v-for="(item, index) in todoLists">
+            <div class="edit" v-if="item.isEditable">
+              <input v-bind:data="index" v-model="item.text">
+              <div class="button_wrap">
+                <button class="button_primary button_small" v-on:click="update(item)">更新</button>
+                <button class="button_secondary" v-on:click="cancelEdit(item)">キャンセル</button>
+              </div>
+            </div>
+            <div class="show" v-else>
+              <p class="text">
+                {{ item.text }}
+              </p>
+              <div class="button_wrap">
+                <button class="button_secondary" v-on:click="edit(item)">編集</button>
+                <button class="button_danger" v-on:click="remove(item)">削除</button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
     <script src="index.js"></script>
   </body>

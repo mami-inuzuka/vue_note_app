@@ -1,0 +1,120 @@
+body {
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN","Hiragino Sans",Meiryo,sans-serif;
+  background-color: #F3F6FE;
+  color: #2D354E;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  appearance: none;
+  flex-shrink: 0;
+  border-radius: 6px;
+}
+
+button:hover {
+  opacity: 0.5;
+}
+
+.button_large {
+  width: 100px;
+}
+
+.button_small {
+  padding: 8px 16px;
+}
+
+.button_primary {
+  background-color: #65749A;
+  color: #FFFFFF;
+}
+
+.button_secondary {
+  color: #65749A;
+}
+
+.button_danger {
+  color: #A6132E;
+}
+
+input {
+  box-sizing: border-box;
+  appearance: none;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  font: inherit;
+  outline: none;
+  color: #2D354E;
+}
+
+::placeholder {
+  color: rgba(45, 53, 78, 0.4);
+}
+
+.input_wrap {
+  display: flex;
+}
+
+.input_wrap .main_input {
+  background-color: #E8EDFA;
+  width: 100%;
+  height: 56px;
+  padding: 0 24px;
+  color: #65749A;
+}
+
+.input_wrap button {
+  margin-left: 16px;
+}
+
+.inner {
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top: 80px;
+}
+
+ul.todo_lists {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+ul.todo_lists li {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  height: 64px;
+  min-height: 64px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  background-color: #FFFFFF;
+  box-shadow: 0px 3px 28px rgba(79, 119, 121, 0.05);
+  padding: 0 24px;
+}
+
+.todo_lists li input {
+  width: 100%;
+  flex: 1;
+}
+
+.todo_lists .text {
+  width: 100%;
+}
+
+.todo_lists li .show,
+.todo_lists li .edit  {
+  width: 100%;
+  display: flex;
+}
+
+.button_wrap {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.button_wrap button:first-child {
+  margin-right: 24px;
+}
