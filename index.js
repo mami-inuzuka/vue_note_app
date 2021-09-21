@@ -25,8 +25,12 @@ const app = new Vue({
       this.todoLists.splice(index, 1)
       localStorage.setItem('todoLists', JSON.stringify(this.todoLists))
     },
-    edit (item) {
+    edit (item, index) {
       item.isEditable = !item.isEditable
+      const ref = 'item' + index
+      this.$nextTick(function () {
+        app.$refs[ref][0].focus()
+      })
     },
     cancelEdit (item) {
       item.isEditable = !item.isEditable
@@ -34,7 +38,6 @@ const app = new Vue({
     },
     update (item) {
       const index = this.todoLists.indexOf(item)
-      console.log(item.text)
       const textToAdd = item.text
       this.todoLists[index] = {
         text: textToAdd,
