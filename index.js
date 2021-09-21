@@ -18,6 +18,11 @@ const app = new Vue({
       })
       localStorage.setItem('todoLists', JSON.stringify(this.todoLists))
       textToAdd.value = ''
+    },
+    remove (item) {
+      const index = this.todoLists.indexOf(item)
+      this.todoLists.splice(index, 1)
+      localStorage.setItem('todoLists', JSON.stringify(this.todoLists))
     }
   }
 })
