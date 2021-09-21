@@ -6,6 +6,13 @@
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
   </head>
   <body>
+    <div id="app">
+      <input v-model="todoItem.text">
+    <ul>
+      <li v-for="list in lists">{{ list.text }}</li>
+    </ul>
+    <button v-on:click="save">保存</button>
+    </div>
     <script src="index.js"></script>
   </body>
 </html>
