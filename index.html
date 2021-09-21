@@ -9,9 +9,18 @@
     <div id="app">
       <input ref="text"><button v-on:click="save">追加</button>
       <ul>
-        <li v-for="item in todoLists">
-          {{ item.text }}
-          <button v-on:click="remove(item)">削除</button>
+        <li v-for="(item, index) in todoLists">
+          <div v-if="item.isEditable">
+            <input v-bind:data="index" v-model="item.text">
+            <button v-on:click="update(item)">更新</button>
+            <button v-on:click="cancelEdit(item)">キャンセル</button>
+          </div>
+          <div v-else>
+            {{ item.text }}
+            <button v-on:click="edit(item)">編集</button>
+            <button v-on:click="remove(item)">削除</button>
+          </div>
+
         </li>
       </ul>
 
