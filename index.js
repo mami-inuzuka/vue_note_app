@@ -5,20 +5,19 @@ function fetch () {
 const app = new Vue({
   el: '#app',
   data: {
-    todoItem: {
-      text: ''
-    },
-    todoLists: []
+    todoLists: [],
   },
   created () {
-    this.lists = fetch()
+    this.todoLists = fetch()
   },
   methods: {
     save () {
-      this.todoLists = JSON.parse(localStorage.getItem('todoLists'))
-      this.todoLists.push(this.todoItem)
+      const textToAdd = this.$refs.text
+      this.todoLists.push({
+        text: textToAdd.value
+      })
       localStorage.setItem('todoLists', JSON.stringify(this.todoLists))
-      this.todoItem.text = ''
+      textToAdd.value = ''
     }
   }
 })
