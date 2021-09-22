@@ -42,6 +42,7 @@ const app = new Vue({
     },
     edit (item, index) {
       item.isEditable = !item.isEditable
+      this.beforeEditTodo = item.text
       const ref = 'item' + index
       this.$nextTick(function () {
         app.$refs[ref][0].focus()
@@ -49,6 +50,7 @@ const app = new Vue({
     },
     cancelEdit (item) {
       item.isEditable = !item.isEditable
+      item.text = this.beforeEditTodo
     },
     update (item) {
       const index = this.todoLists.indexOf(item)
