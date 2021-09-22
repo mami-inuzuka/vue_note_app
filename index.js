@@ -28,7 +28,7 @@ const app = new Vue({
     this.todoLists = todoStrage.fetch()
   },
   methods: {
-    save () {
+    saveTodo () {
       const textToAdd = this.$refs.text
       this.todoLists.push({
         text: textToAdd.value,
@@ -36,11 +36,11 @@ const app = new Vue({
       })
       textToAdd.value = ''
     },
-    remove (item) {
+    removeTodo (item) {
       const index = this.todoLists.indexOf(item)
       this.todoLists.splice(index, 1)
     },
-    edit (item, index) {
+    editTodo (item, index) {
       item.isEditable = !item.isEditable
       this.beforeEditTodo = item.text
       const ref = 'item' + index
@@ -52,11 +52,11 @@ const app = new Vue({
       item.isEditable = !item.isEditable
       item.text = this.beforeEditTodo
     },
-    update (item) {
+    updateTodo (item) {
       const index = this.todoLists.indexOf(item)
-      const textToAdd = item.text
+      const textToUpdate = item.text
       this.todoLists[index] = {
-        text: textToAdd,
+        text: textToUpdate,
         isEditable: false
       }
       this.todoLists.splice()
