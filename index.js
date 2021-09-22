@@ -29,12 +29,15 @@ const app = new Vue({
   },
   methods: {
     addTodo () {
-      const textToAdd = this.$refs.text
+      let textToAdd = this.$refs.text.value
+      if (!textToAdd) {
+        return
+      }
       this.todoLists.push({
-        text: textToAdd.value,
+        text: textToAdd,
         isEditable: false
       })
-      textToAdd.value = ''
+      textToAdd = ''
     },
     removeTodo (item) {
       const index = this.todoLists.indexOf(item)
