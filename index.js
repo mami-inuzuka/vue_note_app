@@ -33,14 +33,15 @@ const app = new Vue({
       const textToAdd = this.newTodo
       const id = new Date().getTime().toString()
       if (!textToAdd) {
-        return
+        window.alert('1文字以上入力してください')
+      } else {
+        this.todoLists.push({
+          id: id,
+          text: textToAdd,
+          isEditable: false
+        })
+        this.newTodo = ''
       }
-      this.todoLists.push({
-        id: id,
-        text: textToAdd,
-        isEditable: false
-      })
-      this.newTodo = ''
     },
     removeTodo (item) {
       const index = this.todoLists.indexOf(item)
@@ -58,13 +59,17 @@ const app = new Vue({
       item.text = this.beforeEditTodo
     },
     updateTodo (item) {
-      const index = this.todoLists.indexOf(item)
-      const textToUpdate = item.text
-      this.todoLists[index] = {
-        text: textToUpdate,
-        isEditable: false
+      if (!item.text) {
+        window.alert('1文字以上入力してください')
+      } else {
+        const index = this.todoLists.indexOf(item)
+        const textToUpdate = item.text
+        this.todoLists[index] = {
+          text: textToUpdate,
+          isEditable: false
+        }
+        this.todoLists.splice()
       }
-      this.todoLists.splice()
     }
   }
 })
