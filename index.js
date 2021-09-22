@@ -16,6 +16,14 @@ const app = new Vue({
   data: {
     todoLists: []
   },
+  watch: {
+    todoLists: {
+      handler: function (todoLists) {
+        todoStrage.save(todoLists)
+      },
+      deep: true
+    }
+  },
   created () {
     this.todoLists = todoStrage.fetch()
   },
@@ -26,13 +34,11 @@ const app = new Vue({
         text: textToAdd.value,
         isEditable: false
       })
-      todoStrage.save(this.todoLists)
       textToAdd.value = ''
     },
     remove (item) {
       const index = this.todoLists.indexOf(item)
       this.todoLists.splice(index, 1)
-      todoStrage.save(this.todoLists)
     },
     edit (item, index) {
       item.isEditable = !item.isEditable
@@ -52,7 +58,6 @@ const app = new Vue({
         isEditable: false
       }
       this.todoLists.splice()
-      todoStrage.save(this.todoLists)
     }
   }
 })
