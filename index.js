@@ -1,5 +1,9 @@
+/* globals Vue */
+
+const localStorage = window.localStorage
+
 function fetch () {
-  return JSON.parse(localStorage.getItem('todoLists'))
+  return JSON.parse(window.localStorage.getItem('todoLists'))
 }
 
 const app = new Vue({
