@@ -28,7 +28,7 @@ const app = new Vue({
     this.todoLists = todoStrage.fetch()
   },
   methods: {
-    saveTodo () {
+    addTodo () {
       const textToAdd = this.$refs.text
       this.todoLists.push({
         text: textToAdd.value,
