@@ -19,7 +19,7 @@ const app = new Vue({
   },
   watch: {
     todoLists: {
-      handler: function (todoLists) {
+      handler (todoLists) {
         todoStrage.save(todoLists)
       },
       deep: true
