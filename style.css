@@ -55,6 +55,65 @@ input {
   color: rgba(45, 53, 78, 0.4);
 }
 
+input[type=checkbox] {
+  display: none;
+}
+
+.checkbox {
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  padding: 0 40px;
+  position: relative;
+  width: auto;
+  display: flex;
+  align-items: center;
+}
+
+.checkbox::before {
+  background: #FFFFFF;
+  border: 2px solid #E6EAF5;
+  content: '';
+  display: block;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+}
+
+.checkbox::after {
+  border-right: 2px solid #FFFFFF;
+  border-bottom: 2px solid #FFFFFF;
+  content: '';
+  display: block;
+  width: 8px;
+  height: 14px;
+  left: 7px;
+  top: 22px;
+  opacity: 0;
+  position: absolute;
+  transform: rotate(45deg);
+}
+
+input[type=checkbox]:checked + .checkbox p {
+  opacity: 0.4;
+  text-decoration: line-through;
+}
+
+input[type=checkbox]:checked + .checkbox::after {
+  opacity: 1;
+}
+
+input[type=checkbox]:checked + .checkbox::before {
+  background: #65749A;
+  border: 2px solid #65749A;
+}
+
+
+
 .input_wrap {
   display: flex;
 }
@@ -107,6 +166,7 @@ ul.todo_lists li {
 .todo_lists li .show,
 .todo_lists li .edit  {
   width: 100%;
+  height: 100%;
   display: flex;
 }
 

@@ -23,9 +23,10 @@
               </div>
             </div>
             <div class="show" v-else>
-              <p class="text">
-                {{ item.text }}
-              </p>
+              <input type="checkbox" :id="item.id" name="status" v-model="item.status">
+              <label :for="item.id" class="text checkbox">
+                <p>{{ item.text }}</p>
+              </label>
               <div class="button_wrap">
                 <button class="button_secondary" @click="editTodo(item)">編集</button>
                 <button class="button_danger" @click="removeTodo(item)">削除</button>
