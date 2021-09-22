@@ -31,10 +31,12 @@ const app = new Vue({
   methods: {
     addTodo () {
       const textToAdd = this.newTodo
+      const id = new Date().getTime().toString()
       if (!textToAdd) {
         return
       }
       this.todoLists.push({
+        id: id,
         text: textToAdd,
         isEditable: false
       })
@@ -44,12 +46,11 @@ const app = new Vue({
       const index = this.todoLists.indexOf(item)
       this.todoLists.splice(index, 1)
     },
-    editTodo (item, index) {
+    editTodo (item) {
       item.isEditable = !item.isEditable
       this.beforeEditTodo = item.text
-      const ref = 'item' + index
       this.$nextTick(function () {
-        app.$refs[ref][0].focus()
+        app.$refs[item.id][0].focus()
       })
     },
     cancelEdit (item) {

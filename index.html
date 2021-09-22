@@ -14,9 +14,9 @@
           <button class="button_large button_primary" @click="addTodo">追加</button>
         </div>
         <ul class="todo_lists">
-          <li v-for="(item, index) in todoLists">
+          <li v-for="(item, index) in todoLists" :key="item.id">
             <div class="edit" v-if="item.isEditable">
-              <input :data="index" v-model="item.text" :ref="'item' + index">
+              <input v-model="item.text" :ref="item.id">
               <div class="button_wrap">
                 <button class="button_primary button_small" @click="updateTodo(item)">更新</button>
                 <button class="button_secondary" @click="cancelEdit(item)">キャンセル</button>
@@ -27,7 +27,7 @@
                 {{ item.text }}
               </p>
               <div class="button_wrap">
-                <button class="button_secondary" @click="editTodo(item, index)">編集</button>
+                <button class="button_secondary" @click="editTodo(item)">編集</button>
                 <button class="button_danger" @click="removeTodo(item)">削除</button>
               </div>
             </div>
