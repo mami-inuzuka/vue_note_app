@@ -14,7 +14,8 @@ const todoStrage = {
 const app = new Vue({
   el: '#app',
   data: {
-    todoLists: []
+    todoLists: [],
+    newTodo: ''
   },
   watch: {
     todoLists: {
@@ -29,7 +30,7 @@ const app = new Vue({
   },
   methods: {
     addTodo () {
-      let textToAdd = this.$refs.text.value
+      const textToAdd = this.newTodo
       if (!textToAdd) {
         return
       }
@@ -37,7 +38,7 @@ const app = new Vue({
         text: textToAdd,
         isEditable: false
       })
-      textToAdd = ''
+      this.newTodo = ''
     },
     removeTodo (item) {
       const index = this.todoLists.indexOf(item)

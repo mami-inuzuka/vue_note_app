@@ -10,7 +10,7 @@
     <div id="app">
       <div class="inner">
         <div class="input_wrap">
-          <input class="main_input" ref="text" placeholder="何をしますか？">
+          <input class="main_input" v-model="newTodo" placeholder="タスクを入力してください">
           <button class="button_large button_primary" @click="addTodo">追加</button>
         </div>
         <ul class="todo_lists">
