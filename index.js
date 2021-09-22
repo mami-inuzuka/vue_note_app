@@ -2,8 +2,13 @@
 
 const localStorage = window.localStorage
 
-function fetch () {
-  return JSON.parse(window.localStorage.getItem('todoLists') || '[]')
+const todoStrage = {
+  fetch () {
+    return JSON.parse(localStorage.getItem('todoLists') || '[]')
+  },
+  save (todoLists) {
+    localStorage.setItem('todoLists', JSON.stringify(todoLists))
+  }
 }
 
 const app = new Vue({
@@ -12,7 +17,7 @@ const app = new Vue({
     todoLists: []
   },
   created () {
-    this.todoLists = fetch()
+    this.todoLists = todoStrage.fetch()
   },
   methods: {
     save () {
@@ -21,13 +26,13 @@ const app = new Vue({
         text: textToAdd.value,
         isEditable: false
       })
-      localStorage.setItem('todoLists', JSON.stringify(this.todoLists))
+      todoStrage.save(this.todoLists)
       textToAdd.value = ''
     },
     remove (item) {
       const index = this.todoLists.indexOf(item)
       this.todoLists.splice(index, 1)
-      localStorage.setItem('todoLists', JSON.stringify(this.todoLists))
+      todoStrage.save(this.todoLists)
     },
     edit (item, index) {
       item.isEditable = !item.isEditable
@@ -38,7 +43,6 @@ const app = new Vue({
     },
     cancelEdit (item) {
       item.isEditable = !item.isEditable
-      localStorage.setItem('todoLists', JSON.stringify(this.todoLists))
     },
     update (item) {
       const index = this.todoLists.indexOf(item)
@@ -48,7 +52,7 @@ const app = new Vue({
         isEditable: false
       }
       this.todoLists.splice()
-      localStorage.setItem('todoLists', JSON.stringify(this.todoLists))
+      todoStrage.save(this.todoLists)
     }
   }
 })
