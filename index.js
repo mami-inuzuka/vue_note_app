@@ -65,13 +65,8 @@ const app = new Vue({
       } else {
         const index = this.todoLists.indexOf(item)
         const textToUpdate = item.text
-        this.todoLists[index] = {
-          id: item.id,
-          status: item.status,
-          text: textToUpdate,
-          isEditable: false
-        }
-        this.todoLists.splice()
+        this.$set(this.todoLists[index], 'text', textToUpdate)
+        this.$set(this.todoLists[index], 'isEditable', false)
       }
     }
   }
