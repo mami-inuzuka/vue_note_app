@@ -173,6 +173,7 @@ ul.todo_lists li {
 .button_wrap {
   display: flex;
   flex-shrink: 0;
+  padding: 10px 0;
 }
 
 .button_wrap button:first-child {
