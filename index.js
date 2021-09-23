@@ -2,7 +2,7 @@
 
 const localStorage = window.localStorage
 
-const todoStrage = {
+const todoStorage = {
   fetch () {
     return JSON.parse(localStorage.getItem('todoLists') || '[]')
   },
@@ -20,13 +20,13 @@ const app = new Vue({
   watch: {
     todoLists: {
       handler (todoLists) {
-        todoStrage.save(todoLists)
+        todoStorage.save(todoLists)
       },
       deep: true
     }
   },
   created () {
-    this.todoLists = todoStrage.fetch()
+    this.todoLists = todoStorage.fetch()
   },
   methods: {
     addTodo () {
