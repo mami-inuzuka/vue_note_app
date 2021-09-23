@@ -52,7 +52,7 @@ const app = new Vue({
       item.isEditable = !item.isEditable
       this.beforeEditTodo = item.text
       this.$nextTick(function () {
-        app.$refs[item.id][0].focus()
+        this.$refs[item.id][0].focus()
       })
     },
     cancelEdit (item) {
