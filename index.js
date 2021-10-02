@@ -30,15 +30,14 @@ const app = new Vue({
   },
   methods: {
     addTodo () {
-      const textToAdd = this.newTodo
       const id = new Date().getTime().toString()
-      if (!textToAdd) {
+      if (!this.newTodo) {
         window.alert('1文字以上入力してください')
       } else {
         this.todoLists.push({
           id: id,
           status: false,
-          text: textToAdd,
+          text: this.newTodo,
           isEditable: false
         })
         this.newTodo = ''
