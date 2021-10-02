@@ -36,7 +36,7 @@ const app = new Vue({
       } else {
         this.todoLists.push({
           id: id,
-          status: false,
+          checked: false,
           text: this.newTodo,
           isEditable: false
         })

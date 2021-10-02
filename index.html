@@ -23,7 +23,7 @@
               </div>
             </div>
             <div class="show" v-else>
-              <input type="checkbox" :id="item.id" name="status" v-model="item.status">
+              <input type="checkbox" :id="item.id" name="checked" v-model="item.checked">
               <label :for="item.id" class="text checkbox">
                 <p>{{ item.text }}</p>
               </label>
