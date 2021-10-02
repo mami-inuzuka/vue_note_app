@@ -17,14 +17,6 @@ const app = new Vue({
     todoLists: [],
     newTodo: ''
   },
-  watch: {
-    todoLists: {
-      handler (todoLists) {
-        todoStorage.save(todoLists)
-      },
-      deep: true
-    }
-  },
   created () {
     this.todoLists = todoStorage.fetch()
   },
@@ -40,12 +32,14 @@ const app = new Vue({
           text: this.newTodo,
           isEditable: false
         })
+        todoStorage.save(this.todoLists)
         this.newTodo = ''
       }
     },
     removeTodo (item) {
       const index = this.todoLists.indexOf(item)
       this.todoLists.splice(index, 1)
+      todoStorage.save(this.todoLists)
     },
     editTodo (item) {
       item.isEditable = !item.isEditable
@@ -66,7 +60,11 @@ const app = new Vue({
         const textToUpdate = item.text
         this.$set(this.todoLists[index], 'text', textToUpdate)
         this.$set(this.todoLists[index], 'isEditable', false)
+        todoStorage.save(this.todoLists)
       }
+    },
+    checkTodo (item) {
+      todoStorage.save(this.todoLists)
     }
   }
 })
