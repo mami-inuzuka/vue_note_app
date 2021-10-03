@@ -15,7 +15,7 @@
         </div>
         <ul class="todo_lists">
           <li v-for="(item, index) in todoLists" :key="item.id">
-            <div class="edit" v-if="item.isEditable">
+            <div class="edit" v-if="currentEditingId === item.id">
               <input v-model="item.text" :ref="item.id">
               <div class="button_wrap">
                 <button class="button_primary button_small" @click="updateTodo(item)">更新</button>

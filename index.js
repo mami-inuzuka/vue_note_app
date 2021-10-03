@@ -15,7 +15,8 @@ const app = new Vue({
   el: '#app',
   data: {
     todoLists: [],
-    newTodo: ''
+    newTodo: '',
+    currentEditingId: 0
   },
   created () {
     this.todoLists = todoStorage.fetch()
@@ -29,8 +30,7 @@ const app = new Vue({
         this.todoLists.push({
           id: id,
           checked: false,
-          text: this.newTodo,
-          isEditable: false
+          text: this.newTodo
         })
         todoStorage.save(this.todoLists)
         this.newTodo = ''
@@ -42,14 +42,14 @@ const app = new Vue({
       todoStorage.save(this.todoLists)
     },
     editTodo (item) {
-      item.isEditable = !item.isEditable
+      this.currentEditingId = item.id
       this.beforeEditTodo = item.text
       this.$nextTick(function () {
         this.$refs[item.id][0].focus()
       })
     },
     cancelEdit (item) {
-      item.isEditable = !item.isEditable
+      this.currentEditingId = 0
       item.text = this.beforeEditTodo
     },
     updateTodo (item) {
@@ -59,7 +59,6 @@ const app = new Vue({
         const index = this.todoLists.indexOf(item)
         const textToUpdate = item.text
         this.$set(this.todoLists[index], 'text', textToUpdate)
-        this.$set(this.todoLists[index], 'isEditable', false)
         todoStorage.save(this.todoLists)
       }
     },
