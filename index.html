@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>TODOリスト</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div id="app">
+      <div class="inner">
+        <div class="input_wrap">
+          <input class="main_input" v-model="newTodo" placeholder="タスクを入力してください">
+          <button class="button_large button_primary" @click="addTodo">追加</button>
+        </div>
+        <ul class="todo_lists">
+          <li v-for="(item, index) in todoLists" :key="item.id">
+            <div class="edit" v-if="currentEditingId === item.id">
+              <input v-model="item.text" :ref="item.id">
+              <div class="button_wrap">
+                <button class="button_primary button_small" @click="updateTodo(item)">更新</button>
+                <button class="button_secondary" @click="cancelEdit(item)">キャンセル</button>
+              </div>
+            </div>
+            <div class="show" v-else>
+              <input type="checkbox" :id="item.id" name="checked" v-model="item.checked" @change="checkTodo(item)">
+              <label :for="item.id" class="text checkbox">
+                <p>{{ item.text }}</p>
+              </label>
+              <div class="button_wrap">
+                <button class="button_secondary" @click="editTodo(item)">編集</button>
+                <button class="button_danger" @click="removeTodo(item)">削除</button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>
